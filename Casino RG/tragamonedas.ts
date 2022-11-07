@@ -1,4 +1,29 @@
-export class TragaMonedas{
+import { Casino } from "./Casino";
+
+
+
+export abstract class TragaMonedas{
+        protected ValorApuesta:number;
+        protected ProbabilidadDeGanar:number;
+       
+
+        public constructor(){
+            this.ValorApuesta=0;
+            this.ProbabilidadDeGanar=0;
+        }
+
+        
+    
+}
+    
+  
+    
+    
+    
+    
+    
+    
+    /*
         protected ElegirModo:number;
         protected Pozo:number;
         protected cantidadadFichas:number;
@@ -15,9 +40,16 @@ export class TragaMonedas{
     }
     
     setModo(paModo:number){
-        this.ElegirModo=paModo;
-    }
+        let readlineSync=require('readline-sync');
+        let consultaJuego=readlineSync.question("indique nivel del juego");
+            if(consultaJuego==1){
+                console.log("nivel 1");
+            }else if(consultaJuego==20){
+                console.log("nivel 2")
+          
 
+    }
+}
     getpozo():number{
         return this.Pozo;
     }
@@ -35,5 +67,4 @@ export class TragaMonedas{
 
     }
 
-
-}
+*/
