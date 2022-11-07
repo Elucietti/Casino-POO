@@ -1,4 +1,3 @@
-
 const vrandom = require("vrandom")
 import { Casino } from "./Casino";
 import { TragaMonedas } from "./tragamonedas";
@@ -34,9 +33,6 @@ export class JugadorPrincipiante extends TragaMonedas{
                     linea3=vrandom.int(1, 5, false);
                                 
                     console.log(linea1+linea2+linea3);
-                    
-                    
-
                 }
                 let acumulado:number=this.pozo+this.Jugada2;
                 console.log('\n'+"total del pozo acumulado: "+acumulado+'\n');

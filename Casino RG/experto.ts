@@ -3,6 +3,7 @@ let lineaJugada=0;
 const vrandom = require("vrandom")
 export class JugadorExperto extends TragaMonedas{       
         private Jugada:number;
+        private archivoEstadistica:string;
         
         constructor(pApuesta:number,pProbabilidad:number,pJugada:number,pPozo:number){
             super();
