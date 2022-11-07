@@ -13,8 +13,8 @@ var fs = require('fs');
     
 
     constructor(){
-        this.pTragamonedas=new JugadorPrincipiante(10,5);
-        this.eTragamonedas=new JugadorExperto(10,5);
+        this.pTragamonedas=new JugadorPrincipiante(100,2,1);
+        this.eTragamonedas=new JugadorExperto(100,2,1,5);
         this.cJuego1=new Juego1();
         this.cJuego2=new Juego2();
     }
@@ -43,9 +43,9 @@ var fs = require('fs');
             console.log('\n'+'\n'+' **** Elija el juego que quiere jugar **** '+'\n'+'\n');
             opcion=Number(readlineSync.question('1- experto'+'\n'+'2- principiante'+'\n'+'3- juego 1 '+'\n'+'4-juego 2'+'\n'+'0-salir'+'\n'));
             if(opcion==1){                
-                console.log(this.eTragamonedas.InicioJuego(1,9));
+                console.log(this.eTragamonedas.InicioJuego());
             }else if(opcion==2){
-                console.log(this.pTragamonedas.InicioJuego(1,9));
+                console.log(this.pTragamonedas.InicioJuego());
             }else if(opcion==3){
                 console.log(" juegos 1")
             }else if(opcion==4){

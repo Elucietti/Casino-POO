@@ -16,34 +16,43 @@ var __extends = (this && this.__extends) || (function () {
 })();
 exports.__esModule = true;
 exports.JugadorPrincipiante = void 0;
+var vrandom = require("vrandom");
 var tragamonedas_1 = require("./tragamonedas");
-var lcgRandom = require("lcg-random");
-var opcion2 = 0;
+var opcion2 = require('random-num');
 var lineaJugada = 0;
 var JugadorPrincipiante = /** @class */ (function (_super) {
     __extends(JugadorPrincipiante, _super);
-    function JugadorPrincipiante(pApuesta, pProbabilidad) {
-        return _super.call(this) || this;
+    function JugadorPrincipiante(pApuesta, pProbabilidad, pJugada2) {
+        var _this = _super.call(this) || this;
+        _this.Jugada2 = pJugada2;
+        _this.pozo = 2500;
+        return _this;
     }
-    JugadorPrincipiante.prototype.InicioJuego = function (min, max) {
+    JugadorPrincipiante.prototype.InicioJuego = function () {
         var readlineSync = require('readline-sync');
-        console.log('\n' + '\n' + ' **** ingrese apueta **** ' + '\n' + '\n');
-        opcion2 = Number(readlineSync.question());
-        if (opcion2 > 500) {
+        console.log('\n' + '** ingrese apueta **** ' + '\n');
+        this.Jugada2 = Number(readlineSync.question());
+        if (this.Jugada2 > 500) {
             console.log("intenta juagar el modo Experto");
         }
         else {
-            var linea1 = new Array(1);
-            var linea2 = new Array(1);
-            var linea3 = new Array(1);
-            var min_1 = Math.ceil(1);
-            var max_1 = Math.floor(9);
-            console.log("empezemos: ");
-            for (var i = 0; i <= 5; i++) {
-                linea1[i] = Math.floor(Math.random() * (max_1 - min_1 + 1)) + min_1;
-                linea2[i] = Math.floor(Math.random() * (max_1 - min_1 + 1)) + min_1;
-                linea3[i] = Math.floor(Math.random() * (max_1 - min_1 + 1)) + min_1;
-                console.log(linea1[i] + linea2[i] + linea3[i]);
+            var linea1 = void 0;
+            var linea2 = void 0;
+            var linea3 = void 0;
+            console.log("empezemos, el pozo acummulado es de: " + this.pozo);
+            for (var i = 0; i < 3; i++) {
+                linea1 = vrandom.int(1, 5, false);
+                linea2 = vrandom.int(1, 5, false);
+                linea3 = vrandom.int(1, 5, false);
+                console.log(linea1 + linea2 + linea3);
+            }
+            var acumulado = this.pozo + this.Jugada2;
+            console.log('\n' + "total del pozo acumulado: " + acumulado + '\n');
+            console.log('\n' + 'desea volver a jugar?  1-NO || 2-SI' + '\n');
+            this.Jugada2 = Number(readlineSync.question());
+            if (this.Jugada2 == 2) {
+                this.InicioJuego();
+                this.Jugada2 = this.pozo + this.Jugada2;
             }
         }
     };

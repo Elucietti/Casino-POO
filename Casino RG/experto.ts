@@ -1,50 +1,52 @@
-
-import { match } from "assert";
 import { TragaMonedas } from "./tragamonedas";
-let lcgRandom = require("lcg-random");
-let opcion1=0;
 let lineaJugada=0;
-
-
-
-
-export class JugadorExperto extends TragaMonedas{
-       
+const vrandom = require("vrandom")
+export class JugadorExperto extends TragaMonedas{       
         private Jugada:number;
-
-        constructor(pApuesta:number,pProbabilidad:number){
+        
+        constructor(pApuesta:number,pProbabilidad:number,pJugada:number,pPozo:number){
             super();
-            
+            this.Jugada=pJugada;
+            this.pozo=5000
         }
        
-        public InicioJuego(min:number, max:number){
+        public InicioJuego():void{
             let readlineSync = require('readline-sync');
-            console.log('\n'+'\n'+' **** ingrese apueta **** '+'\n'+'\n');
-            opcion1=Number(readlineSync.question());
-            if(opcion1<500){
+            console.log('\n'+'\n'+' ** ingrese apueta ** '+'\n');
+            this.Jugada=Number(readlineSync.question());
+            if(this.Jugada<500){
                 console.log("intenta juagar el modo principiante")
             }else{  
-                let linea1=new Array(1);
-                let linea2=new Array(1);
-                let linea3=new Array(1);
-                let linea4=new Array(1);
-                let linea5=new Array(1); 
-                let min = Math.ceil(1);
-                let max = Math.floor(9);
-                          
-                console.log("empezemos: ");
-                for(let i=0;i<=5;i++){
-                    linea1[i]=Math.floor(Math.random() * (max - min + 1)) + min;
-                    linea2[i]=Math.floor(Math.random() * (max - min + 1)) + min;
-                    linea3[i]=Math.floor(Math.random() * (max - min + 1)) + min;
-                    linea4[i]=Math.floor(Math.random() * (max - min + 1)) + min;
-                    linea5[i]=Math.floor(Math.random() * (max - min + 1)) + min;                
-                    console.log(linea1[i] + linea2 [i] +linea3[i]+linea4[i]+linea5[i]);
-                }
-
+                let linea1:number;
+                let linea2:number;
+                let linea3:number;
+                let linea4:number;
+                let linea5:number;
                 
-               
+                         
+                console.log("empezemos, el pozo acummulado es de: "+this.pozo);
+                for(let i=0;i<5;i++){ 
+                    linea1=vrandom.int(1, 10, false);
+                    linea2=vrandom.int(1, 10, false);
+                    linea3=vrandom.int(1, 10, false);
+                    linea4=vrandom.int(1, 10, false);
+                    linea5=vrandom.int(1, 10, false);              
+                    console.log(linea1+linea2+linea3+linea4+linea5);
+                    
+                    
 
+                }
+                let acumulado:number=this.pozo+this.Jugada;
+                console.log('\n'+"total del pozo acumulado: "+acumulado+'\n');
+                console.log('\n'+'desea volver a jugar?  1-NO || 2-SI'+'\n');
+                this.Jugada=Number(readlineSync.question());
+                if(this.Jugada==2){
+                    this.InicioJuego()
+                  this.Jugada=this.pozo+this.Jugada;
+
+          
+                
+              
             }
         
             

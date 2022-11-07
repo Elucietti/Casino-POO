@@ -8,8 +8,8 @@ var experto_1 = require("./experto");
 var fs = require('fs');
 var Casino = /** @class */ (function () {
     function Casino() {
-        this.pTragamonedas = new Principiante_1.JugadorPrincipiante(10, 5);
-        this.eTragamonedas = new experto_1.JugadorExperto(10, 5);
+        this.pTragamonedas = new Principiante_1.JugadorPrincipiante(100, 2, 1);
+        this.eTragamonedas = new experto_1.JugadorExperto(100, 2, 1, 5);
         this.cJuego1 = new Juego1_1.Juego1();
         this.cJuego2 = new Juego2_1.Juego2();
     }
@@ -38,10 +38,10 @@ var Casino = /** @class */ (function () {
             console.log('\n' + '\n' + ' **** Elija el juego que quiere jugar **** ' + '\n' + '\n');
             opcion = Number(readlineSync.question('1- experto' + '\n' + '2- principiante' + '\n' + '3- juego 1 ' + '\n' + '4-juego 2' + '\n' + '0-salir' + '\n'));
             if (opcion == 1) {
-                console.log(this.eTragamonedas.InicioJuego(1, 9));
+                console.log(this.eTragamonedas.InicioJuego());
             }
             else if (opcion == 2) {
-                console.log(this.pTragamonedas.InicioJuego(1, 9));
+                console.log(this.pTragamonedas.InicioJuego());
             }
             else if (opcion == 3) {
                 console.log(" juegos 1");

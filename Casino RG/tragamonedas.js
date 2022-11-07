@@ -5,6 +5,7 @@ var TragaMonedas = /** @class */ (function () {
     function TragaMonedas() {
         this.ValorApuesta = 0;
         this.ProbabilidadDeGanar = 0;
+        this.pozo = 0;
     }
     return TragaMonedas;
 }());

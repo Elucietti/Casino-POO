@@ -17,38 +17,40 @@ var __extends = (this && this.__extends) || (function () {
 exports.__esModule = true;
 exports.JugadorExperto = void 0;
 var tragamonedas_1 = require("./tragamonedas");
-var lcgRandom = require("lcg-random");
-var opcion1 = 0;
 var lineaJugada = 0;
+var vrandom = require("vrandom");
 var JugadorExperto = /** @class */ (function (_super) {
     __extends(JugadorExperto, _super);
-    function JugadorExperto(pApuesta, pProbabilidad) {
-        return _super.call(this) || this;
+    function JugadorExperto(pApuesta, pProbabilidad, pJugada, pPozo) {
+        var _this = _super.call(this) || this;
+        _this.Jugada = pJugada;
+        _this.pozo = 5000;
+        return _this;
     }
-    JugadorExperto.prototype.InicioJuego = function (min, max) {
+    JugadorExperto.prototype.InicioJuego = function () {
         var readlineSync = require('readline-sync');
-        console.log('\n' + '\n' + ' **** ingrese apueta **** ' + '\n' + '\n');
-        opcion1 = Number(readlineSync.question());
-        if (opcion1 < 500) {
+        console.log('\n' + '\n' + ' ** ingrese apueta ** ' + '\n');
+        this.Jugada = Number(readlineSync.question());
+        if (this.Jugada < 500) {
             console.log("intenta juagar el modo principiante");
         }
         else {
-            var linea1 = new Array(1);
-            var linea2 = new Array(1);
-            var linea3 = new Array(1);
-            var linea4 = new Array(1);
-            var linea5 = new Array(1);
-            var min_1 = Math.ceil(1);
-            var max_1 = Math.floor(9);
-            console.log("empezemos: ");
-            for (var i = 0; i <= 5; i++) {
-                linea1[i] = Math.floor(Math.random() * (max_1 - min_1 + 1)) + min_1;
-                linea2[i] = Math.floor(Math.random() * (max_1 - min_1 + 1)) + min_1;
-                linea3[i] = Math.floor(Math.random() * (max_1 - min_1 + 1)) + min_1;
-                linea4[i] = Math.floor(Math.random() * (max_1 - min_1 + 1)) + min_1;
-                linea5[i] = Math.floor(Math.random() * (max_1 - min_1 + 1)) + min_1;
-                console.log(linea1[i] + linea2[i] + linea3[i] + linea4[i] + linea5[i]);
+            var linea1 = void 0;
+            var linea2 = void 0;
+            var linea3 = void 0;
+            var linea4 = void 0;
+            var linea5 = void 0;
+            console.log("empezemos, el pozo acummulado es de: " + this.pozo);
+            for (var i = 0; i < 5; i++) {
+                linea1 = vrandom.int(1, 10, false);
+                linea2 = vrandom.int(1, 10, false);
+                linea3 = vrandom.int(1, 10, false);
+                linea4 = vrandom.int(1, 10, false);
+                linea5 = vrandom.int(1, 10, false);
+                console.log(linea1 + linea2 + linea3 + linea4 + linea5);
             }
+            var acumulado = this.pozo + this.Jugada;
+            console.log('\n' + "total del pozo acumulado: " + acumulado + '\n');
         }
     };
     return JugadorExperto;
