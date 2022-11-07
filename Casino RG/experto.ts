@@ -32,7 +32,7 @@ export class JugadorExperto extends TragaMonedas{
                     linea2=vrandom.int(1, 5, false);
                     linea3=vrandom.int(1, 5, false);
                     linea4=vrandom.int(1, 5, false);
-                    linea5=vrandom.int(1, , false);              
+                    linea5=vrandom.int(1, 5, false);              
                     console.log(linea1+linea2+linea3+linea4+linea5);
                     
                     

@@ -18,6 +18,7 @@ exports.__esModule = true;
 exports.JugadorPrincipiante = void 0;
 var vrandom = require("vrandom");
 var tragamonedas_1 = require("./tragamonedas");
+var fs = require('fs');
 var opcion2 = require('random-num');
 var lineaJugada = 0;
 var JugadorPrincipiante = /** @class */ (function (_super) {
