@@ -10,6 +10,7 @@ export class JugadorExperto extends TragaMonedas{
             this.pozo=5000
         }
        
+       
         public InicioJuego():void{
             let readlineSync = require('readline-sync');
             console.log('\n'+'\n'+' ** ingrese apueta ** '+'\n');
@@ -26,11 +27,11 @@ export class JugadorExperto extends TragaMonedas{
                          
                 console.log("empezemos, el pozo acummulado es de: "+this.pozo);
                 for(let i=0;i<5;i++){ 
-                    linea1=vrandom.int(1, 10, false);
-                    linea2=vrandom.int(1, 10, false);
-                    linea3=vrandom.int(1, 10, false);
-                    linea4=vrandom.int(1, 10, false);
-                    linea5=vrandom.int(1, 10, false);              
+                    linea1=vrandom.int(1, 5, false);
+                    linea2=vrandom.int(1, 5, false);
+                    linea3=vrandom.int(1, 5, false);
+                    linea4=vrandom.int(1, 5, false);
+                    linea5=vrandom.int(1, , false);              
                     console.log(linea1+linea2+linea3+linea4+linea5);
                     
                     
@@ -55,4 +56,5 @@ export class JugadorExperto extends TragaMonedas{
        
         }     
 
+}
 }
