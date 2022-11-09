@@ -27,6 +27,7 @@ var JugadorPrincipiante = /** @class */ (function (_super) {
         var _this = _super.call(this) || this;
         _this.Jugada2 = pJugada2;
         _this.pozo = 2500;
+        _this.estadisticas = "no apostaron";
         return _this;
     }
     JugadorPrincipiante.prototype.InicioJuego = function () {
@@ -35,6 +36,8 @@ var JugadorPrincipiante = /** @class */ (function (_super) {
         this.Jugada2 = Number(readlineSync.question());
         if (this.Jugada2 > 500) {
             console.log("intenta juagar el modo Experto");
+            console.log('\n' + '** ingrese apueta **** ' + '\n');
+            this.Jugada2 = Number(readlineSync.question());
         }
         else {
             var linea1 = void 0;
@@ -49,6 +52,7 @@ var JugadorPrincipiante = /** @class */ (function (_super) {
             }
             var acumulado = this.pozo + this.Jugada2;
             console.log('\n' + "total del pozo acumulado: " + acumulado + '\n');
+            this.estadisticas = "\n total apostado:" + this.Jugada2;
             console.log('\n' + 'desea volver a jugar?  1-NO || 2-SI' + '\n');
             this.Jugada2 = Number(readlineSync.question());
             if (this.Jugada2 == 2) {

@@ -6,10 +6,10 @@ var fs = require('fs');
 
  export class Casino{
    
-   private pTragamonedas:JugadorPrincipiante;
-   private eTragamonedas:JugadorExperto;
-   private cJuego1:Juego1;
-   private cJuego2:Juego2; 
+   protected pTragamonedas:JugadorPrincipiante;
+   protected eTragamonedas:JugadorExperto;
+   protected cJuego1:Juego1;
+   protected cJuego2:Juego2; 
     
 
     constructor(){
