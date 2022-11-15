@@ -1,27 +1,28 @@
 import { Casino } from "./Casino";
 
 
+export class tragamonedas{
+    protected apuesta:number;
+    protected pozoAcumulado:number;
+    protected probabilidad:number;
 
-export abstract class TragaMonedas{
-        protected ValorApuesta:number;
-        protected ProbabilidadDeGanar:number;
-        protected pozo:number;
-       
+    public constructor(){
+        this.apuesta=0;
+        this.pozoAcumulado=0;
+        this.probabilidad=0;
+    }
+} 
 
-        public constructor(){
-            this.ValorApuesta=0;
-            this.ProbabilidadDeGanar=0;
-            this.pozo=0;
-        }
 
-        
-    
-}
-    
-  
-    
-    
-    
+
+
+
+
+
+
+
+
+
     
     
  

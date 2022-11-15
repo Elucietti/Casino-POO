@@ -1,53 +1,74 @@
-const vrandom = require("vrandom")
-import { TragaMonedas } from "./tragamonedas";
-var fs = require('fs');
-let opcion2= require('random-num');
-let lineaJugada=0;
+import { tragamonedas } from "./tragamonedas";
+const vrandom = require("vrandom");
+var azar1 = require('azar');
+var azar2 = require('azar');
+var azar3 = require('azar');
+var azar4 = require('azar');
+var azar5 = require('azar');
 
-export class JugadorPrincipiante extends TragaMonedas{
-       
-        private Jugada2:number;
-        private archivoEstadistica:string;
-        public estadisticas:string
-   
+export class JugadorPrincipiante extends tragamonedas{
+    private jugada:number;
+    constructor(){
+        super();
+        this.apuesta=0;
+        this.pozoAcumulado=1000;
+        this.probabilidad=(1/9)*100;
+        this.jugada=0;
+    }
 
-        constructor(pApuesta:number,pProbabilidad:number,pJugada2:number){
-            super();
-            this.Jugada2=pJugada2;
-            this.pozo=2500;
-            this.estadisticas="no apostaron";
-        }        
-            public InicioJuego(){
-            let readlineSync = require('readline-sync');
-            console.log('\n'+'** ingrese apueta **** '+'\n');
-            this.Jugada2=Number(readlineSync.question());
-            if(this.Jugada2>500){
-                console.log("intenta juagar el modo Experto");
-                console.log('\n'+'** ingrese apueta **** '+'\n');
-                this.Jugada2=Number(readlineSync.question());
-            }else{  
-                let linea1:number;
-                let linea2:number;
-                let linea3:number;                
-                console.log("empezemos, el pozo acummulado es de: "+this.pozo);
-                for(let i=0;i<3;i++){ 
-                    linea1=vrandom.int(1, 5, false);
-                    linea2=vrandom.int(1, 5, false);
-                    linea3=vrandom.int(1, 5, false);
-                                
-                    console.log(linea1+linea2+linea3);
-                }
-                let acumulado:number=this.pozo+this.Jugada2;
-                console.log('\n'+"total del pozo acumulado: "+acumulado+'\n');
-                this.estadisticas="\n total apostado:"+this.Jugada2;
+    obtenerApuesta():number{
+        return this.apuesta;
+    }
+    
+    public ingresarApuesta(){
+        let readlineSync = require('readline-sync');
+            console.log('\n'+'\n'+' ** ingrese apueta ** '+'\n');
+            this.apuesta=Number(readlineSync.question());
+    }    
+    obtenerProbabilidad():number{
+        return this.probabilidad;
+    }
+      
+    public  InicioJuego():void{ 
+                
+        let readlineSync = require('readline-sync');
+        let valor = this.obtenerApuesta();
+        console.log('\n'+'** ingrese apuesta **** '+'\n');
+        this.apuesta=Number(readlineSync.question());
+        if(valor>200){    
+                  
+            console.log("intenta jugar el modo experto");
+            console.log('\n'+'** ingrese apuesta **** '+'\n');
+            this.apuesta=Number(readlineSync.question());
+        }else{
+            let acumulado:number=this.pozoAcumulado +this.apuesta; 
+            console.log("Nivel Principiante");            
+            console.log("empezemos, el pozo acummulado es de: "+this.pozoAcumulado);
+            console.log("probabilidad de ganar: " + this.probabilidad +"%" );                               
+                console.log(azar1.dice(3));
+                console.log(azar2.dice(3));
+                console.log(azar3.dice(3));
+            if(azar1==azar2&&azar2==azar3){
+                console.log("Ganaste!");
                 console.log('\n'+'desea volver a jugar?  1-NO || 2-SI'+'\n');
-                this.Jugada2=Number(readlineSync.question());
-                if(this.Jugada2==2){
-                     this.InicioJuego()
-                     this.Jugada2=this.pozo+this.Jugada2;
+                this.apuesta=Number(readlineSync.question());
+                if(this.apuesta==2){
+                    this.InicioJuego(); 
+                    this.pozoAcumulado=this.pozoAcumulado+acumulado;                   
+                }                
+           }else{
+                let readlineSync = require('readline-sync');                                
+                console.log('\n'+"Perdiste!  total del pozo acumulado: "+acumulado+'\n');
+                console.log('\n'+'desea volver a jugar?  1-NO || 2-SI'+'\n');
+                this.apuesta=Number(readlineSync.question());
+                if(this.apuesta==2){
+                    this.InicioJuego(); 
+                    this.pozoAcumulado=this.pozoAcumulado+acumulado;                   
                 }
-               
-        }     
-
-} 
+            
+           }         
+        } 
+    }
 }
+
+

@@ -16,51 +16,73 @@ var __extends = (this && this.__extends) || (function () {
 })();
 exports.__esModule = true;
 exports.JugadorPrincipiante = void 0;
-var vrandom = require("vrandom");
 var tragamonedas_1 = require("./tragamonedas");
-var fs = require('fs');
-var opcion2 = require('random-num');
-var lineaJugada = 0;
+var vrandom = require("vrandom");
+var azar1 = require('azar');
+var azar2 = require('azar');
+var azar3 = require('azar');
+var azar4 = require('azar');
+var azar5 = require('azar');
 var JugadorPrincipiante = /** @class */ (function (_super) {
     __extends(JugadorPrincipiante, _super);
-    function JugadorPrincipiante(pApuesta, pProbabilidad, pJugada2) {
+    function JugadorPrincipiante() {
         var _this = _super.call(this) || this;
-        _this.Jugada2 = pJugada2;
-        _this.pozo = 2500;
-        _this.estadisticas = "no apostaron";
+        _this.apuesta = 0;
+        _this.pozoAcumulado = 1000;
+        _this.probabilidad = (1 / 9) * 100;
+        _this.jugada = 0;
         return _this;
     }
+    JugadorPrincipiante.prototype.obtenerApuesta = function () {
+        return this.apuesta;
+    };
+    JugadorPrincipiante.prototype.ingresarApuesta = function () {
+        var readlineSync = require('readline-sync');
+        console.log('\n' + '\n' + ' ** ingrese apueta ** ' + '\n');
+        this.apuesta = Number(readlineSync.question());
+    };
+    JugadorPrincipiante.prototype.obtenerProbabilidad = function () {
+        return this.probabilidad;
+    };
     JugadorPrincipiante.prototype.InicioJuego = function () {
         var readlineSync = require('readline-sync');
-        console.log('\n' + '** ingrese apueta **** ' + '\n');
-        this.Jugada2 = Number(readlineSync.question());
-        if (this.Jugada2 > 500) {
-            console.log("intenta juagar el modo Experto");
-            console.log('\n' + '** ingrese apueta **** ' + '\n');
-            this.Jugada2 = Number(readlineSync.question());
+        var valor = this.obtenerApuesta();
+        console.log('\n' + '** ingrese apuesta **** ' + '\n');
+        this.apuesta = Number(readlineSync.question());
+        if (valor > 200) {
+            console.log("intenta jugar el modo experto");
+            console.log('\n' + '** ingrese apuesta **** ' + '\n');
+            this.apuesta = Number(readlineSync.question());
         }
         else {
-            var linea1 = void 0;
-            var linea2 = void 0;
-            var linea3 = void 0;
-            console.log("empezemos, el pozo acummulado es de: " + this.pozo);
-            for (var i = 0; i < 3; i++) {
-                linea1 = vrandom.int(1, 5, false);
-                linea2 = vrandom.int(1, 5, false);
-                linea3 = vrandom.int(1, 5, false);
-                console.log(linea1 + linea2 + linea3);
+            var acumulado = this.pozoAcumulado + this.apuesta;
+            console.log("Nivel Principiante");
+            console.log("empezemos, el pozo acummulado es de: " + this.pozoAcumulado);
+            console.log("probabilidad de ganar: " + this.probabilidad + "%");
+            console.log(azar1.dice(3));
+            console.log(azar2.dice(3));
+            console.log(azar3.dice(3));
+            if (azar1 == azar2 && azar2 == azar3) {
+                console.log("Ganaste!");
+                console.log('\n' + 'desea volver a jugar?  1-NO || 2-SI' + '\n');
+                this.apuesta = Number(readlineSync.question());
+                if (this.apuesta == 2) {
+                    this.InicioJuego();
+                    this.pozoAcumulado = this.pozoAcumulado + acumulado;
+                }
             }
-            var acumulado = this.pozo + this.Jugada2;
-            console.log('\n' + "total del pozo acumulado: " + acumulado + '\n');
-            this.estadisticas = "\n total apostado:" + this.Jugada2;
-            console.log('\n' + 'desea volver a jugar?  1-NO || 2-SI' + '\n');
-            this.Jugada2 = Number(readlineSync.question());
-            if (this.Jugada2 == 2) {
-                this.InicioJuego();
-                this.Jugada2 = this.pozo + this.Jugada2;
+            else {
+                var readlineSync_1 = require('readline-sync');
+                console.log('\n' + "Perdiste!  total del pozo acumulado: " + acumulado + '\n');
+                console.log('\n' + 'desea volver a jugar?  1-NO || 2-SI' + '\n');
+                this.apuesta = Number(readlineSync_1.question());
+                if (this.apuesta == 2) {
+                    this.InicioJuego();
+                    this.pozoAcumulado = this.pozoAcumulado + acumulado;
+                }
             }
         }
     };
     return JugadorPrincipiante;
-}(tragamonedas_1.TragaMonedas));
+}(tragamonedas_1.tragamonedas));
 exports.JugadorPrincipiante = JugadorPrincipiante;

@@ -13,8 +13,8 @@ var fs = require('fs');
     
 
     constructor(){
-        this.pTragamonedas=new JugadorPrincipiante(100,2,1);
-        this.eTragamonedas=new JugadorExperto(100,2,1,5);
+        this.pTragamonedas=new JugadorPrincipiante();
+        this.eTragamonedas=new JugadorExperto();
         this.cJuego1=new Juego1();
         this.cJuego2=new Juego2();
     }

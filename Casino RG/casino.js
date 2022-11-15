@@ -8,8 +8,8 @@ var experto_1 = require("./experto");
 var fs = require('fs');
 var Casino = /** @class */ (function () {
     function Casino() {
-        this.pTragamonedas = new Principiante_1.JugadorPrincipiante(100, 2, 1);
-        this.eTragamonedas = new experto_1.JugadorExperto(100, 2, 1, 5);
+        this.pTragamonedas = new Principiante_1.JugadorPrincipiante();
+        this.eTragamonedas = new experto_1.JugadorExperto();
         this.cJuego1 = new Juego1_1.Juego1();
         this.cJuego2 = new Juego2_1.Juego2();
     }
