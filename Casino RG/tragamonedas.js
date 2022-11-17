@@ -6,24 +6,8 @@ var tragamonedas = /** @class */ (function () {
         this.apuesta = 0;
         this.pozoAcumulado = 0;
         this.probabilidad = 0;
+        this.estadistica = "";
     }
     return tragamonedas;
 }());
 exports.tragamonedas = tragamonedas;
-/*
-export abstract class TragaMonedas{
-        protected ValorApuesta:number;
-        protected ProbabilidadDeGanar:number;
-        protected pozo:number;
-       
-
-        public constructor(){
-            this.ValorApuesta=0;
-            this.ProbabilidadDeGanar=0;
-            this.pozo=0;
-        }
-
-    abstract Apuesta():void;
-    
-}
-  */

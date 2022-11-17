@@ -28,6 +28,10 @@ export class JugadorExperto extends tragamonedas{
     obtenerProbabilidad():number{
         return this.probabilidad;
     }
+
+   public  mostrarEstadistica(){
+        this.estadistica="apuesta: "+this.obtenerApuesta;
+        }
       
     public  InicioJuego():void{ 
         let acumulado:number=this.pozoAcumulado +this.apuesta;        
@@ -61,6 +65,7 @@ export class JugadorExperto extends tragamonedas{
                 console.log('\n'+"Perdiste!  total del pozo acumulado: "+acumulado+'\n');
                 console.log('\n'+'desea volver a jugar?  1-NO || 2-SI'+'\n');
                 this.apuesta=Number(readlineSync.question());
+                this.mostrarEstadistica();
                 if(this.apuesta==2){
                     this.InicioJuego(); 
                     this.pozoAcumulado=this.pozoAcumulado+acumulado;                   

@@ -44,6 +44,9 @@ var JugadorExperto = /** @class */ (function (_super) {
     JugadorExperto.prototype.obtenerProbabilidad = function () {
         return this.probabilidad;
     };
+    JugadorExperto.prototype.mostrarEstadistica = function () {
+        this.estadistica = "apuesta: " + this.obtenerApuesta;
+    };
     JugadorExperto.prototype.InicioJuego = function () {
         var acumulado = this.pozoAcumulado + this.apuesta;
         var readlineSync = require('readline-sync');
@@ -78,6 +81,7 @@ var JugadorExperto = /** @class */ (function (_super) {
                 console.log('\n' + "Perdiste!  total del pozo acumulado: " + acumulado + '\n');
                 console.log('\n' + 'desea volver a jugar?  1-NO || 2-SI' + '\n');
                 this.apuesta = Number(readlineSync_1.question());
+                this.mostrarEstadistica();
                 if (this.apuesta == 2) {
                     this.InicioJuego();
                     this.pozoAcumulado = this.pozoAcumulado + acumulado;
